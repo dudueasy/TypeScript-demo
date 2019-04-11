@@ -52,7 +52,7 @@ width: 8rem;
   background: #e0e0e0;
 }
 
- .button.text-÷  , .button.text-✖ , .button.text--  {
+ .button.operator{
    color: white;
   background: #f79232
 }
