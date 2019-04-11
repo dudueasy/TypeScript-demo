@@ -18,7 +18,7 @@ body{
 }
 
 .calculator{
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   display: inline-block;
   box-shadow: #8a8a8a 3px 3px 8px;
   overflow: hidden;
@@ -29,8 +29,10 @@ body{
   border:none;
   border-left: 1px solid #9b8e83;
   border-bottom: 1px solid #9b8e83;
-  width: 4rem;
+  width: 3.5rem;
   height: 3rem;
+  font-weight: 300;
+  font-size: 1.4rem;
 }
 
 .calculator .button:focus{
@@ -42,7 +44,7 @@ body{
 }
 
 .calculator .output{
-  height: 4rem;
+  height: 5rem;
   background: #4c4c4c;
   position: relative;
   font-size: 2rem;
@@ -55,11 +57,11 @@ body{
   color: white; 
 }
 .calculator .text-Clear{
-width: 12rem;
+width: 10.5rem;
 }
 
 .calculator .text-0{
-width: 8rem;
+width: 7rem;
 }
 
 .calculator .button{
