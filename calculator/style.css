@@ -3,6 +3,17 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
+body{ 
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .calculator{
   box-sizing: border-box;
   display: inline-block;

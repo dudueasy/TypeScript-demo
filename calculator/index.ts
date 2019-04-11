@@ -6,10 +6,12 @@
 
   class Calculator {
     public container: HTMLDivElement;
-    public output: HTMLDivElement;
-    public firstNumber: number;
-    public secondNumber: number;
-    public operator: string;
+    public output: HTMLSpanElement;
+    public firstNumber: number = 0;
+    public secondNumber: number | null;
+    public hasDecimalDot: boolean = false;
+    public operator: string | null;
+    public maxLength: number = 10;
 
     constructor(public keys: Array<Array<Key>>) {
       this.createContainer()
@@ -25,13 +27,21 @@
     }
 
     createOutput() {
-      this.output = document.createElement('div')
-      this.output.classList.add('output')
+      let outputContainer = document.createElement('div')
+      outputContainer.classList.add('output')
 
-      let span: HTMLSpanElement = document.createElement('span')
-      span.textContent = '0'
-      this.output.appendChild(span)
-      this.container.appendChild(this.output)
+      this.output = document.createElement('span')
+      this.output.textContent = String(this.firstNumber)
+      outputContainer.appendChild(this.output)
+      this.container.appendChild(outputContainer)
+    }
+
+    updateOutput() {
+      if (!this.operator) {
+        this.output.textContent = String(this.firstNumber)
+      } else if (this.secondNumber) {
+        this.output.textContent = String(this.secondNumber)
+      }
     }
 
     createButton(key: Key, rowContainer: HTMLDivElement): void {
@@ -55,51 +65,130 @@
       )
     }
 
+    calculate() {
+      this.secondNumber = this.secondNumber || 0
+      switch (this.operator) {
+        case ("÷"):
+          if (this.secondNumber !== 0) {
+            this.firstNumber = this.firstNumber / this.secondNumber
+          }
+          else {
+            this.firstNumber = NaN
+          }
+          break;
+
+        case ("+"):
+          this.firstNumber = this.firstNumber + this.secondNumber
+          break;
+
+        case ("-"):
+          this.firstNumber = this.firstNumber - this.secondNumber
+          break;
+
+        case ("×"):
+          this.firstNumber = this.firstNumber * this.secondNumber
+          break;
+
+        default:
+          return;
+      }
+
+      this.secondNumber = null
+      this.operator = null
+      this.updateOutput()
+    }
+
     bindEvents() {
       this.container.addEventListener('click', (e: Event) => {
         if (e.target instanceof HTMLButtonElement) {
           let button: HTMLButtonElement = e.target
           console.log(button)
           console.log(button.classList.value)
+          let clickedValue: string | void
 
+          // 如果用户点击的是数字
           if (button.classList.value.indexOf('number') > -1) {
+            if (button.textContent) {
+              clickedValue = button.textContent
+              console.log(" clickedValue: ", clickedValue)
+            }
+
+
+
             // 如果没有 操作符, 那么拼接数字 firstNumber
+            if (!this.operator) {
+
+              console.log(String(this.firstNumber).indexOf('.'))
+              if (clickedValue === '.' && String(this.firstNumber).indexOf('.') < 0) {
+                this.hasDecimalDot = true
+              }
+
+              else if (clickedValue !== '.') {
+                if (this.hasDecimalDot) {
+                  this.firstNumber = Number(String(this.firstNumber) + '.' + clickedValue)
+                  this.hasDecimalDot = false
+                }
+                else {
+                  this.firstNumber = Number(String(this.firstNumber) + clickedValue)
+                }
+              }
+
+              console.log(this.firstNumber)
+            }
+
+
             // 如果有操作符, 那么拼接数字 secondNumber
+            else {
+              this.secondNumber = this.secondNumber || 0
+
+              console.log(String(this.secondNumber).indexOf('.'))
+              if (clickedValue === '.' && String(this.secondNumber).indexOf('.') < 0) {
+                this.hasDecimalDot = true
+              }
+
+              else if (clickedValue !== '.') {
+                if (this.hasDecimalDot) {
+                  this.secondNumber = Number(String(this.secondNumber) + '.' + clickedValue)
+                  this.hasDecimalDot = false
+                }
+                else {
+                  this.secondNumber = Number(String(this.secondNumber) + clickedValue)
+                }
+              }
+
+              console.log("second:", this.secondNumber)
+            }
 
           }
+
+
+          // 如果点击的是操作符
           else if (button.classList.value.indexOf('operator') > -1) {
-            let operator: string = button.textContent
-            console.log(operator)
+            let operator = button.textContent
+            if (this.operator) {
+              this.calculate()
+            }
+            this.operator = operator
+          }
 
-            switch (operator) {
-              case ("÷"):
-                break;
 
-              case ("+"):
-                break;
+          // 如果点击的是命令
+          else if (button.classList.value.indexOf('command') > -1) {
+            let command: string | null = button.textContent
+            //  = 将结果作为 firstNumber
+            if (command === '=') {
+              this.calculate()
+            }
 
-              case ("-"):
-                break;
-
-              case ("×"):
-                break;
-
-              default:
-                return;
+            if (command === 'Clear') {
+              this.firstNumber = 0
+              this.secondNumber = null
+              this.operator = null
             }
 
 
           }
-
-          else if (button.classList.value.indexOf('command') > -1) {
-            // 将结果作为 firstNumber
-            // 将操作符清空
-
-          }
-
-
-
-
+          this.updateOutput()
         }
       })
     }
