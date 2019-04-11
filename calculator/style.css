@@ -12,6 +12,9 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url('./public/black-hole.jpg') center no-repeat;
+  background-size: cover;
+
 }
 
 .calculator{
@@ -63,7 +66,7 @@ width: 8rem;
   background: #e0e0e0;
 }
 
- .button.operator{
+ .row .button:last-child{
    color: white;
   background: #f79232
 }

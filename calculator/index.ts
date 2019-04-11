@@ -185,8 +185,6 @@
               this.secondNumber = null
               this.operator = null
             }
-
-
           }
           this.updateOutput()
         }
