@@ -8,9 +8,9 @@
         Direction["right"] = "right";
     })(Direction || (Direction = {}));
     log(Direction.up);
-    log(Direction.left);
-    log(Direction["up"]);
+    log(Direction.down);
     log(Direction["left"]);
+    log(Direction["right"]);
     // 变量 x 的类型必须是 枚举类型 Direction 中的一个定义
     var x = void 0;
     x = Direction['up'];
