@@ -1,4 +1,3 @@
-"use strict";
 // 声明 ts 中的主要类型
 var myString;
 var myNum;

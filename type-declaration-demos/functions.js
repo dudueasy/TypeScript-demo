@@ -1,4 +1,3 @@
-"use strict";
 function getSum(x, y) {
     return x + y;
 }

@@ -6,7 +6,8 @@
     ]
   },
   "include": [
-    "calculator"
+    "calculator",
+    "type-declaration-demos"
   ],
   "compileOnSave": true
 }
