@@ -7,8 +7,8 @@
   class Calculator {
     public container: HTMLDivElement;
     public output: HTMLSpanElement;
-    public firstNumber: number = 0;
-    public secondNumber: number | null;
+    public firstNumber: string = '0';
+    public secondNumber: string | null;
     public hasDecimalDot: boolean = false;
     public operator: string | null;
     public maxLength: number = 10;
@@ -36,14 +36,6 @@
       this.container.appendChild(outputContainer)
     }
 
-    updateOutput() {
-      if (!this.operator) {
-        this.output.textContent = String(this.firstNumber)
-      } else if (this.secondNumber) {
-        this.output.textContent = String(this.secondNumber)
-      }
-    }
-
     createButton(key: Key, rowContainer: HTMLDivElement): void {
       const { text, type } = key
 
@@ -65,33 +57,47 @@
       )
     }
 
+    updateOutput() {
+      if (!this.operator) {
+        this.output.textContent = this.firstNumber
+      } else if (this.secondNumber) {
+        this.output.textContent = this.secondNumber
+      }
+    }
+
     calculate() {
-      this.secondNumber = this.secondNumber || 0
+      this.secondNumber = this.secondNumber || '0'
       switch (this.operator) {
         case ("÷"):
-          if (this.secondNumber !== 0) {
-            this.firstNumber = this.firstNumber / this.secondNumber
+          if (this.secondNumber !== '0') {
+            this.firstNumber = String(Number(this.firstNumber) / Number(this.secondNumber))
           }
           else {
-            this.firstNumber = NaN
+            this.firstNumber = 'NaN'
           }
           break;
 
         case ("+"):
-          this.firstNumber = this.firstNumber + this.secondNumber
+          this.firstNumber = String(Number(this.firstNumber) + Number(this.secondNumber))
           break;
 
         case ("-"):
-          this.firstNumber = this.firstNumber - this.secondNumber
+          this.firstNumber = String(Number(this.firstNumber) - Number(this.secondNumber))
           break;
 
         case ("×"):
-          this.firstNumber = this.firstNumber * this.secondNumber
+          this.firstNumber = String(Number(this.firstNumber) * Number(this.secondNumber))
           break;
 
         default:
           return;
       }
+
+      this.firstNumber = String(Number(this.firstNumber).toPrecision(10))
+        .replace(/0+$/, '')
+        .replace(/\.$/, '')
+
+      console.log(`firstnumber: ${this.firstNumber}`)
 
       this.secondNumber = null
       this.operator = null
@@ -104,14 +110,13 @@
           let button: HTMLButtonElement = e.target
           console.log(button)
           console.log(button.classList.value)
-          let clickedValue: string | void
+          let clickedValue: string
 
           // 如果用户点击的是数字
           if (button.classList.value.indexOf('number') > -1) {
-            if (button.textContent) {
-              clickedValue = button.textContent
+              clickedValue = button.textContent || ''
               console.log(" clickedValue: ", clickedValue)
-            }
+            
 
 
 
@@ -119,19 +124,22 @@
             if (!this.operator) {
 
               console.log(String(this.firstNumber).indexOf('.'))
-              if (clickedValue === '.' && String(this.firstNumber).indexOf('.') < 0) {
+              if (clickedValue === '0' && this.firstNumber === '0' && !this.hasDecimalDot) {
+              }
+              else if (clickedValue === '.' && this.firstNumber.indexOf('.') < 0) {
                 this.hasDecimalDot = true
               }
 
               else if (clickedValue !== '.') {
                 if (this.hasDecimalDot) {
-                  this.firstNumber = Number(String(this.firstNumber) + '.' + clickedValue)
+                  this.firstNumber = this.firstNumber + '.' + clickedValue
                   this.hasDecimalDot = false
                 }
                 else {
-                  this.firstNumber = Number(String(this.firstNumber) + clickedValue)
+                  this.firstNumber = this.firstNumber + clickedValue
                 }
               }
+
 
               console.log(this.firstNumber)
             }
@@ -139,20 +147,23 @@
 
             // 如果有操作符, 那么拼接数字 secondNumber
             else {
-              this.secondNumber = this.secondNumber || 0
+              this.secondNumber = this.secondNumber || '0'
 
               console.log(String(this.secondNumber).indexOf('.'))
-              if (clickedValue === '.' && String(this.secondNumber).indexOf('.') < 0) {
+
+              if (clickedValue === '0' && this.secondNumber === '0' && !this.hasDecimalDot) {
+              }
+              else if (clickedValue === '.' && String(this.secondNumber).indexOf('.') < 0) {
                 this.hasDecimalDot = true
               }
 
               else if (clickedValue !== '.') {
                 if (this.hasDecimalDot) {
-                  this.secondNumber = Number(String(this.secondNumber) + '.' + clickedValue)
+                  this.secondNumber = this.secondNumber + '.' + clickedValue
                   this.hasDecimalDot = false
                 }
                 else {
-                  this.secondNumber = Number(String(this.secondNumber) + clickedValue)
+                  this.secondNumber = this.secondNumber + clickedValue
                 }
               }
 
@@ -181,7 +192,7 @@
             }
 
             if (command === 'Clear') {
-              this.firstNumber = 0
+              this.firstNumber = '0'
               this.secondNumber = null
               this.operator = null
             }
