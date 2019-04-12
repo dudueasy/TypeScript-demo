@@ -1,4 +1,10 @@
 {
+    var keyType = void 0;
+    (function (keyType) {
+        keyType["number"] = "number";
+        keyType["operator"] = "operator";
+        keyType["command"] = "command";
+    })(keyType || (keyType = {}));
     var Calculator = /** @class */ (function () {
         function Calculator(keys) {
             this.keys = keys;
@@ -160,31 +166,31 @@
     }());
     var keys = [
         [
-            { "text": "Clear", type: "command" },
-            { "text": "÷", type: "operator" }
+            { "text": "Clear", type: keyType.command },
+            { "text": "÷", type: keyType.operator }
         ],
         [
-            { "text": "7", type: "number" },
-            { "text": "8", type: "number" },
-            { "text": "9", type: "number" },
-            { "text": "×", type: "operator" }
+            { "text": "7", type: keyType.number },
+            { "text": "8", type: keyType.number },
+            { "text": "9", type: keyType.number },
+            { "text": "×", type: keyType.operator }
         ],
         [
-            { "text": "4", type: "number" },
-            { "text": "5", type: "number" },
-            { "text": "6", type: "number" },
-            { "text": "-", type: "operator" }
+            { "text": "4", type: keyType.number },
+            { "text": "5", type: keyType.number },
+            { "text": "6", type: keyType.number },
+            { "text": "-", type: keyType.operator }
         ],
         [
-            { "text": "1", type: "number" },
-            { "text": "2", type: "number" },
-            { "text": "3", type: "number" },
-            { "text": "+", type: "operator" }
+            { "text": "1", type: keyType.number },
+            { "text": "2", type: keyType.number },
+            { "text": "3", type: keyType.number },
+            { "text": "+", type: keyType.operator }
         ],
         [
-            { "text": "0", type: "number" },
-            { "text": ".", type: "number" },
-            { "text": "=", type: "command" }
+            { "text": "0", type: keyType.number },
+            { "text": ".", type: keyType.number },
+            { "text": "=", type: keyType.command }
         ]
     ];
     var calculator = new Calculator(keys);

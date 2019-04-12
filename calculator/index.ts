@@ -1,7 +1,13 @@
 {
   interface Key {
     text: string,
-    type: string
+    type: keyType
+  }
+
+  enum keyType {
+    number = "number",
+    operator = "operator",
+    command = "command"
   }
 
   class Calculator {
@@ -114,10 +120,8 @@
 
           // 如果用户点击的是数字
           if (button.classList.value.indexOf('number') > -1) {
-              clickedValue = button.textContent || ''
-              console.log(" clickedValue: ", clickedValue)
-            
-
+            clickedValue = button.textContent || ''
+            console.log(" clickedValue: ", clickedValue) 
 
 
             // 如果没有 操作符, 那么拼接数字 firstNumber
@@ -205,31 +209,31 @@
 
   let keys: Array<Array<Key>> = [
     [
-      { "text": "Clear", type: "command" },
-      { "text": "÷", type: "operator" }
+      { "text": "Clear", type: keyType.command },
+      { "text": "÷", type: keyType.operator }
     ],
     [
-      { "text": "7", type: "number" },
-      { "text": "8", type: "number" },
-      { "text": "9", type: "number" },
-      { "text": "×", type: "operator" }
+      { "text": "7", type: keyType.number },
+      { "text": "8", type: keyType.number },
+      { "text": "9", type: keyType.number },
+      { "text": "×", type: keyType.operator }
     ],
     [
-      { "text": "4", type: "number" },
-      { "text": "5", type: "number" },
-      { "text": "6", type: "number" },
-      { "text": "-", type: "operator" }
+      { "text": "4", type: keyType.number },
+      { "text": "5", type: keyType.number },
+      { "text": "6", type: keyType.number },
+      { "text": "-", type: keyType.operator }
     ],
     [
-      { "text": "1", type: "number" },
-      { "text": "2", type: "number" },
-      { "text": "3", type: "number" },
-      { "text": "+", type: "operator" }
+      { "text": "1", type: keyType.number },
+      { "text": "2", type: keyType.number },
+      { "text": "3", type: keyType.number },
+      { "text": "+", type: keyType.operator }
     ],
     [
-      { "text": "0", type: "number" },
-      { "text": ".", type: "number" },
-      { "text": "=", type: "command" }
+      { "text": "0", type: keyType.number },
+      { "text": ".", type: keyType.number },
+      { "text": "=", type: keyType.command }
     ]
   ]
 
