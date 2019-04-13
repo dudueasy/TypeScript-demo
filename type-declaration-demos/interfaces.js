@@ -70,5 +70,14 @@
         return x;
     })();
     console.log(anotherFunctionWithProps);
-    /* example 5 end */
+    var frank = {
+        name: 'frank',
+        age: 20,
+        move: function () {
+            console.log('I am moving');
+        }
+    };
+    frank.move();
+    /* example 6 end */
 }
+//# sourceMappingURL=interfaces.js.map

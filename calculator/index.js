@@ -195,3 +195,4 @@
     ];
     var calculator = new Calculator(keys);
 }
+//# sourceMappingURL=index.js.map

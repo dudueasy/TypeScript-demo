@@ -9,3 +9,4 @@ console.log(getName('apolo'));
 function returnVoid() {
     return;
 }
+//# sourceMappingURL=functions.js.map

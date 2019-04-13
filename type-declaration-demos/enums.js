@@ -16,3 +16,4 @@
     x = Direction['up'];
     console.log('x: ', x);
 }
+//# sourceMappingURL=enums.js.map

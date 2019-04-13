@@ -10,3 +10,4 @@
     tell([1, 2, 3]);
     tell('this is a string');
 }
+//# sourceMappingURL=typeAssertion.js.map
