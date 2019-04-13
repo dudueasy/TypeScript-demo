@@ -148,4 +148,30 @@
   console.log(anotherFunctionWithProps)
   /* example 5 end */
 
+
+  /* example 6 接口继承 */
+  interface Animal{
+    move():void; 
+  }
+
+  // Human 继承了 Animal 接口
+  interface Human extends Animal{
+    name: string;
+    age: number;
+  }
+
+  let frank:Human = {
+    name: 'frank',
+    age: 20,
+    move(){
+      console.log('I am moving')
+    }
+  }
+
+  frank.move()
+
+
+  /* example 6 end */
+
+
 }
