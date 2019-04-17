@@ -1,19 +1,19 @@
 /* demo1 Generic Types */
 {
   // 定义泛型函数
-  function returnSameType<T>(a: T): T {
+  function returnSameTypes<T>(a: T): T {
     console.log(`type of argument is ${typeof a}`)
     return a
   }
 
-  returnSameType(111)
-  returnSameType('whatever')
+  returnSameTypes(111)
+  returnSameTypes('whatever')
 
   // 定义一个满足泛型函数类型的函数
-  let anotherGenericFunction: <T>(a: T) => T = returnSameType
+  let anotherGenericFunction: <T>(a: T) => T = returnSameTypes
 
   // 使用对象记法创建函数
-  let yetAnotherGenericFunction: { <T>(a: T): T } = returnSameType
+  let yetAnotherGenericFunction: { <T>(a: T): T } = returnSameTypes
 }
 
 
