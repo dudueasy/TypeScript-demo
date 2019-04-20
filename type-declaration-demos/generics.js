@@ -8,12 +8,10 @@
     // } 
     // log(returnSameType(1)) 
     // 正确示范: 使用类型变量 T 声明一个泛型函数
-
     function returnSameType(a) {
         console.log(typeof a);
         return a;
     }
-
     // 泛型的使用方法: 
     // 方法1: 调用泛型时声明 类型变量 是一个字符串
     returnSameType('11');

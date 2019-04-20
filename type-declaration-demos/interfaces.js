@@ -47,7 +47,7 @@
     // 定义一个函数 fn, 返回值实现了上述接口, 
     // fn 函数内部返回一个对象.  
     // 这个对象是一个函数, 具有一个函数属性
-    var fn = function () {
+    var fn_1 = function () {
         var x = function (a, b) {
             return a + b;
         };
@@ -58,7 +58,7 @@
     };
     // 调用 fn 来获得返回值. 
     // 返回值就是一个实现了  FunctionWithFunctionProps  接口的函数 
-    var functionWithProps = fn();
+    var functionWithProps = fn_1();
     // 简洁写法 (调用一个立即执行函数来返回所需函数 )
     var anotherFunctionWithProps = (function () {
         var x = function (a, b) {

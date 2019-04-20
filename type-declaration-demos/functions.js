@@ -24,14 +24,14 @@ var _this = this;
     returnVoid.call('whatever', 1, 2, 3, 4);
     /* Example1 end */
     /* Example2 arrow Function Demo*/
-    var fn = function (a, b) {
+    var fn_1 = function (a, b) {
         // console.log(arguments) 
         // 在 JS 中,  箭头函数中是不存在 arguments 的
         // this 由调用方式决定
         console.log(_this);
         return a + b;
     };
-    fn(10, 20);
+    fn_1(10, 20);
     function anotherFn() {
         var _this = this;
         var xx = function () {
