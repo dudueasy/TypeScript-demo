@@ -4,8 +4,9 @@
       "es2015",
       "dom"
     ],
-    "target": "es5", 
-    "sourceMap": true
+    "target": "es5",
+    "sourceMap": true,
+    "strictNullChecks": true
   },
   "include": [
     "calculator",
