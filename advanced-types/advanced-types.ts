@@ -62,8 +62,7 @@
         if ((child as Boy).isMale) {
             // if ((<Boy>child).isMale) {
             return 'Male'
-        }
-        if ((child as Girl).isFemale) {
+        } else {
             return 'Female'
         }
     }
@@ -102,7 +101,7 @@
     function lengthOrValue(a: string | number): number {
         if (typeof a === 'string') {
             return (a.length)
-        } else if (typeof a === 'number') {
+        } else {
             return Number(a.toFixed(2))
         }
     }
