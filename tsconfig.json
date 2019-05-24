@@ -6,7 +6,8 @@
     ],
     "target": "es5",
     "sourceMap": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "jsx": "react"
   },
   "include": [
     "calculator",
